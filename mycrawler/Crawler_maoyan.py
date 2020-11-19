@@ -19,6 +19,7 @@ class MaoYan(object):
 
         ua = UserAgent()
 
+        # 和爬取豆瓣的爬虫一样，设置访问页面的头部信息
         self.headers = {
             'User-Agent': ua.random,
             'Connection': 'keep-alive',
@@ -42,6 +43,7 @@ class MaoYan(object):
         # self.db = client[mongo_db]
         # # self.db['maoyan'].create_index('id', unique=True)  # 以评论的id为主键进行去重
 
+        # 连接Mongodb数据，若不存在，设置数据库名为The_Wandering_Earth，集合名字为maoyan
         try:
             self.mongo_py = pymongo.MongoClient()
             self.collection = self.mongo_py.The_Wandering_Earth.maoyan
@@ -55,6 +57,8 @@ class MaoYan(object):
         url: 评论真实请求的url，参数ts为时间戳
         :return: None
         """
+
+        # 设置一些IP代理，如果爬虫不可用可以将其注释或者取快代理获得一些新的IP
         proxies = [
             {"HTTP": "117.64.224.210:1133"},
             {"HTTP": "144.255.48.172:9999"},
@@ -68,10 +72,12 @@ class MaoYan(object):
             {"HTTP": "113.121.36.148:9999"}
         ]
 
+        # 设置猫眼中流浪地球评论页面的初始地址
         url = "https://m.maoyan.com/review/v2/comments.json?movieId=248906&userId=-1&offset={}&limit=15&type=3"
-        for i in range(250, 1001):
-            proxy = random.choice(proxies)
+        for i in range(0, 1001):    # 爬取猫眼的前1000页数据，因为豆瓣猫眼都有反扒，因此猫眼10万条数据被存储到data.csv文件中
+            proxy = random.choice(proxies)     # 随机选择一个准备好的IP代理
             req_url = url.format(i)
+            # 因为猫眼爬取的不是普通页面，而是json数据的页面，因此可以用如下操作获取一页的所有json评论数据
             res = requests.get(req_url, headers=self.headers, proxies=proxy).json()['data']['comments']
             for com in res:
                 self.parse_comment(com)
@@ -79,12 +85,15 @@ class MaoYan(object):
             print('成功爬取到第{}页的数据！'.format(i))
             time.sleep(1)
 
+    # 解析一条评论数据并写入数据库
     def parse_comment(self, com):
         """
         解析函数，用来解析爬回来的json评论数据，并把数据保存进mongodb数据库
         :param com: 每一条评论的json数据
         :return:
         """
+
+        # 分别获取评论内容，性别，评论id，用户昵称，回复数，评分，评论时间，点赞数，用户id，用户等级字段
         comment = {'content': com['content'], 'gender': com['gender'], 'id': com['id'],
                    'nick': com['nick'], 'replyCount': com['replyCount'], 'score': com['score'],
                    'time': com['time'], 'upCount': com['upCount'],
@@ -92,6 +101,7 @@ class MaoYan(object):
         # 通过评论id去重，如果已经有了就更新，没有就插入
         # temp = self.db['maoyan'].update_one({"id": com["id"]}, {"$set": comment})
         # if temp == 0:
+        # 获得一条插入一条数据到Mongodb中
         self.collection.insert_one(comment)
 
 
