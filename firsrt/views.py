@@ -1,3 +1,4 @@
+# Django中的V部分，用于数据处理（绘图）和返回展示
 
 # Django使用的包
 from django.shortcuts import render
@@ -33,19 +34,21 @@ from jinja2 import Environment, FileSystemLoader
 
 CurrentConfig.GLOBAL_ENV = Environment(loader=FileSystemLoader("./first/templates"))
 
-# 连接数据库
-conn = MongoClient(host='127.0.0.1', port=27017)  # 实例化MongoClient
-db = conn.get_database('The_Wandering_Earth')  # 连接到TWH1数据库
+# 连接数据库，如果要使用，将以下语句全部解除注释，并且将pd.json_normalize([comment for comment in name_data])解除注释即可以使用
+# conn = MongoClient(host='127.0.0.1', port=27017)  # 实例化MongoClient
+# db = conn.get_database('The_Wandering_Earth')  # 连接到TWH1数据库
 
-# 猫眼数据以及保存为data.csv文件，无需从数据库中导出
-
-douban = db.get_collection('douban') # 连接到集合comment
+# douban = db.get_collection('douban') # 连接到集合comment
 # maoyan = db.get_collection("maoyan")
-douban_data = douban.find()
+# douban_data = douban.find()
 # maoyan_data = maoyan.find()
 
+# 数据都已经保存为data.csv文件，无需从数据库中导出
+
 # 读取数据
-data1 = pd.json_normalize([comment for comment in douban_data])
+# data1 = pd.json_normalize([comment for comment in douban_data])
+# data2 = pd.json_normalize([comment for comment in maoyan_data])
+data1 = pd.read_csv("douban.csv")
 data2 = pd.read_csv("data.csv")
 
 
