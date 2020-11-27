@@ -17,18 +17,18 @@
 - 本地MongoDB(MongoDB shell version v3.6.20)数据库
 
 #### 需要安装的包：
--Django==3.1.3
--jieba==0.42.1
--Jinja2==2.11.2
--numpy==1.19.4
--pandas==1.1.4
--pyecharts==1.9.0
--pymongo==3.11.0
--bs4==0.0.1	
--jupyter==1.0.0	
--lxml==4.5.2
--requests==2.25.0	
--fake-useragent==0.1.11	
+- Django==3.1.3
+- jieba==0.42.1
+- Jinja2==2.11.2
+- numpy==1.19.4
+- pandas==1.1.4
+- pyecharts==1.9.0
+- pymongo==3.11.0
+- bs4==0.0.1	
+- jupyter==1.0.0	
+- lxml==4.5.2
+- requests==2.25.0	
+- fake-useragent==0.1.11	
 
 ## Crawling and analysing MaoYan and DouBan comments of The Wandering Earth
 
@@ -48,17 +48,17 @@ The main files are listed below:
 - MongoDB(MongoDB shell version v3.6.20)
 
 #### Packages need to be installed
--Django==3.1.3
--jieba==0.42.1
--Jinja2==2.11.2
--numpy==1.19.4
--pandas==1.1.4
--pyecharts==1.9.0
--pymongo==3.11.0
--bs4==0.0.1	
--jupyter==1.0.0	
--lxml==4.5.2
--requests==2.25.0	
--fake-useragent==0.1.11	
+- Django==3.1.3
+- jieba==0.42.1
+- Jinja2==2.11.2
+- numpy==1.19.4
+- pandas==1.1.4
+- pyecharts==1.9.0
+- pymongo==3.11.0
+- bs4==0.0.1	
+- jupyter==1.0.0	
+- lxml==4.5.2
+- requests==2.25.0	
+- fake-useragent==0.1.11	
 
 **Notice: If you have any questions, please contact the email tzy577@mail.ustc.edu.cn**
