@@ -36,7 +36,7 @@ This project Crawls MaoYan and DouBan comments of The Wandering Earth, and saves
 The main files are listed below:
 - ./mycrawler/Crawler_maoyan.py：codes for crawling MaoYan comments of The Wandering Earth(with annotation, MOngoDB needs to be installed.)
 - ./mycrawler/Crawler_douban.py：codes for crawling DouBan comments of The Wandering Earth(with annotation, MOngoDB needs to be installed.)
-./Data_Analysis/Data_Analysis.ipynb：Jupyter notebook for analysing the comments and scores
+- ./Data_Analysis/Data_Analysis.ipynb：Jupyter notebook for analysing the comments and scores
 - data.csv: 100000+ comment MaoYan comments data extracted from MongoDB
 - douban.csv: 500 comment DouBan comments data extracted from MongoDB
 - stopwords.txt: list of stop words
