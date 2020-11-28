@@ -30,6 +30,8 @@
 - requests==2.25.0	
 - fake-useragent==0.1.11	
 
+**注: 如有问题，可以联系邮箱 tzy577@mail.ustc.edu.cn**
+
 ## Crawling and analysing MaoYan and DouBan comments of The Wandering Earth
 
 This project Crawls MaoYan and DouBan comments of The Wandering Earth, and saves the comments data into MongoDB. It reveals the reason why the movie is getting some bad reputation.
